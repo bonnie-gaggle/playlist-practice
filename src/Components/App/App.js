@@ -9,7 +9,7 @@ function App() {
       <div className="App">
         <SearchBar />
         <div className="App-playlist">
-          {/* <!-- Add a SearchResults component --> */}
+          <SearchResults />
           {/* <!-- Add a Playlist component --> */}
         </div>
       </div>
