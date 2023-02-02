@@ -21,6 +21,7 @@ class App extends React.Component {
       ]
     }
     this.addTrack = this.addTrack.bind(this);
+    this.removeTrack = this.removeTrack.bind(this);
   }
 
   addTrack(track) {
@@ -30,6 +31,15 @@ class App extends React.Component {
     }
     tracks.push(track);
     this.setState({playlistTracks: tracks})
+  }
+
+  removeTrack(track) {
+    const tracks = this.state.playlistTracks;
+    const trackIndex = tracks.findIndex(song => song.id === track.id)
+    if (trackIndex > -1) {
+      tracks.splice(trackIndex, 1);
+      this.setState({playlistTracks: tracks})
+    }
   }
 
   render() {
@@ -43,7 +53,11 @@ class App extends React.Component {
               searchResults={this.state.searchResults}
               onAdd={this.addTrack}
             />
-            <Playlist playlistTracks={this.state.playlistTracks} playlistName={this.state.playlistName}/>
+            <Playlist
+              playlistTracks={this.state.playlistTracks}
+              playlistName={this.state.playlistName}
+              onRemove={this.removeTrack}
+            />
           </div>
         </div>
       </div>
